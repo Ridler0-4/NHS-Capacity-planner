@@ -1,0 +1,117 @@
+/* TimetableStyles.uss */
+
+.root {
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: rgb(245, 244, 240);
+    padding: 16px;
+}
+
+.header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.title {
+    font-size: 18px;
+    -unity-font-style: bold;
+    color: rgb(30, 30, 28);
+}
+
+.subtitle {
+    font-size: 13px;
+    color: rgb(100, 99, 95);
+}
+
+.grid-scroll {
+    flex-grow: 1;
+    margin-bottom: 12px;
+}
+
+.grid-container {
+    flex-direction: column;
+}
+
+.grid-row {
+    flex-direction: row;
+}
+
+
+.grid-header-cell {
+    width: 90px;
+    height: 32px;
+    border-color: rgb(210, 208, 200);
+    border-width: 0.5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid-header-cell Label {
+    font-size: 11px;
+    -unity-font-style: bold;
+    color: rgb(100, 99, 95);
+    -unity-text-align: middle-center;
+}
+
+.clinician-cell {
+    width: 120px;
+    height: 40px;
+    border-color: rgb(210, 208, 200);
+    border-width: 0.5px;
+    align-items: flex-start;
+    justify-content: center;
+    padding-left: 8px;
+}
+
+.clinician-name {
+    font-size: 12px;
+    -unity-font-style: bold;
+    color: rgb(30, 30, 28);
+}
+
+.clinician-time {
+    font-size: 10px;
+    color: rgb(140, 138, 130);
+}
+
+
+.session-cell {
+    width: 90px;
+    height: 40px;
+    border-color: rgb(210, 208, 200);
+    border-width: 0.5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.session-label {
+    font-size: 11px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    padding: 3px 6px;
+    border-radius: 4px;
+    width: 78px;
+}
+
+
+.clinic   { background-color: rgba(55, 138, 221, 0.15); color: rgb(24, 95, 165);  }
+.theatre  { background-color: rgba(127, 119, 221, 0.15); color: rgb(83, 74, 183); }
+.admin    { background-color: rgba(99, 153, 34, 0.15);  color: rgb(59, 109, 17);  }
+.oncall   { background-color: rgba(186, 117, 23, 0.15); color: rgb(133, 79, 11);  }
+.leave    { background-color: rgba(226, 75, 74, 0.15);  color: rgb(163, 45, 45);  }
+.empty    { background-color: rgba(136, 135, 128, 0.1); color: rgb(136, 135, 128);}
+
+.legend {
+    flex-direction: row;
+    flex-wrap: wrap;
+    top: 8px;
+    margin-top: 8px;
+}
+
+.legend-pill {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 999px;
+}

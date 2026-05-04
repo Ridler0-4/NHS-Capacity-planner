@@ -1,0 +1,26 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement name="root" class="root">
+
+        <!-- Header bar -->
+        <ui:VisualElement class="header">
+            <ui:Label text="Weekly Capacity Planner" class="title"/>
+            <ui:Label name="week-label" text="Week of 20 Jan 2025" class="subtitle"/>
+        </ui:VisualElement>
+
+        <!-- Timetable grid lives inside a scroll view -->
+        <ui:ScrollView name="grid-scroll" class="grid-scroll">
+            <ui:VisualElement name="grid-container" class="grid-container"/>
+        </ui:ScrollView>
+
+        <!-- Legend -->
+        <ui:VisualElement class="legend">
+            <ui:Label text="Clinic" class="legend-pill clinic"/>
+            <ui:Label text="Theatre" class="legend-pill theatre"/>
+            <ui:Label text="Admin" class="legend-pill admin"/>
+            <ui:Label text="On Call" class="legend-pill oncall"/>
+            <ui:Label text="Leave" class="legend-pill leave"/>
+            <ui:Label text="Empty" class="legend-pill empty"/>
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>

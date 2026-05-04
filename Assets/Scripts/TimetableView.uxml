@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="TimetableView" src="project://database/Assets/TimetableView.uxml?fileID=9197481963319205126&amp;guid=1b537ac82b3d33845b6c2c7956fae4d1&amp;type=3#TimetableView"/>
+    <Style src="project://database/Assets/TimetableStyles.uss?fileID=7433441132597879392&amp;guid=1a7360bdf89c2f949841259e5826526f&amp;type=3#TimetableStyles"/>
+    <ui:Instance template="TimetableView"/>
+    <ui:ScrollView style="height: 0;"/>
+</ui:UXML>
