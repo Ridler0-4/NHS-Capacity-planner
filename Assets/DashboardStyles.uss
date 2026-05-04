@@ -1,0 +1,127 @@
+/* DashboardStyles.uss */
+
+.root {
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: rgb(245, 244, 240);
+    padding: 16px;
+}
+
+/* ── Top bar ── */
+.topbar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.title {
+    font-size: 18px;
+    -unity-font-style: bold;
+    color: rgb(30, 30, 28);
+}
+
+.subtitle {
+    font-size: 13px;
+    color: rgb(100, 99, 95);
+}
+
+/* ── Metric cards ── */
+.metric-strip {
+    flex-direction: row;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.metric-card {
+    flex-grow: 1;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    border-width: 0.5px;
+    border-color: rgb(210, 208, 200);
+    padding: 12px 16px;
+}
+
+.metric-label {
+    font-size: 11px;
+    color: rgb(100, 99, 95);
+    margin-bottom: 4px;
+}
+
+.metric-value {
+    font-size: 24px;
+    -unity-font-style: bold;
+    color: rgb(30, 30, 28);
+}
+
+.metric-sub {
+    font-size: 11px;
+    color: rgb(140, 138, 130);
+    margin-top: 2px;
+}
+
+/* ── Table ── */
+.table-scroll {
+    flex-grow: 1;
+    margin-bottom: 12px;
+}
+
+.table-container {
+    flex-direction: column;
+}
+
+.table-row {
+    flex-direction: row;
+    border-bottom-width: 0.5px;
+    border-color: rgb(210, 208, 200);
+    align-items: center;
+    min-height: 40px;
+}
+
+.table-row:hover {
+    background-color: rgb(238, 237, 232);
+}
+
+.header-row {
+    background-color: rgb(235, 234, 229);
+    min-height: 32px;
+}
+
+.header-row Label {
+    font-size: 11px;
+    -unity-font-style: bold;
+    color: rgb(100, 99, 95);
+}
+
+/* Column widths */
+.col-name  { width: 140px; padding-left: 8px; font-size: 13px; -unity-font-style: bold; }
+.col-num   { width: 110px; font-size: 13px; -unity-text-align: middle-center; }
+.col-badge { width: 110px; -unity-text-align: middle-center; align-items: center; justify-content: center; }
+
+/* ── Status badges ── */
+.badge {
+    font-size: 11px;
+    -unity-font-style: bold;
+    padding: 3px 10px;
+    border-radius: 999px;
+    -unity-text-align: middle-center;
+}
+
+.badge-green  { background-color: rgba(99,153,34,0.15);  color: rgb(59,109,17);  }
+.badge-amber  { background-color: rgba(186,117,23,0.15); color: rgb(133,79,11);  }
+.badge-red    { background-color: rgba(226,75,74,0.15);  color: rgb(163,45,45);  }
+.badge-above  { background-color: rgba(55,138,221,0.15); color: rgb(24,95,165);  }
+.badge-nodata { background-color: rgba(136,135,128,0.1); color: rgb(136,135,128);}
+
+/* ── Legend ── */
+.legend {
+    flex-direction: row;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.legend-item { font-size: 11px; }
+.green { color: rgb(59,109,17);  }
+.amber { color: rgb(133,79,11); }
+.red   { color: rgb(163,45,45); }
+.above { color: rgb(24,95,165); }

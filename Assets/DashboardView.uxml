@@ -1,0 +1,39 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="project://database/Assets/DashboardStyles.uss"/>
+    <ui:VisualElement name="root" class="root">
+
+        <ui:VisualElement class="topbar">
+            <ui:Label text="Capacity Dashboard" class="title"/>
+            <ui:Label name="week-label" text="Week of 20 Jan 2025" class="subtitle"/>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="metric-strip" class="metric-strip"/>
+
+        <ui:ScrollView name="table-scroll" class="table-scroll">
+            <ui:VisualElement name="table-container" class="table-container">
+
+                <ui:VisualElement class="table-row header-row">
+                    <ui:Label text="Clinician"         class="col-name"/>
+                    <ui:Label text="Planned"           class="col-num"/>
+                    <ui:Label text="Adjusted"          class="col-num"/>
+                    <ui:Label text="Cap. variance"     class="col-num"/>
+                    <ui:Label text="Cap. status"       class="col-badge"/>
+                    <ui:Label text="Actual"            class="col-num"/>
+                    <ui:Label text="Del. variance"     class="col-num"/>
+                    <ui:Label text="Del. status"       class="col-badge"/>
+                </ui:VisualElement>
+
+                <ui:VisualElement name="table-body"/>
+
+            </ui:VisualElement>
+        </ui:ScrollView>
+
+        <ui:VisualElement class="legend">
+            <ui:Label text="Green: &gt;= -5%" class="legend-item green"/>
+            <ui:Label text="Amber: -5% to -10%" class="legend-item amber"/>
+            <ui:Label text="Red: less than -10%" class="legend-item red"/>
+            <ui:Label text="Above upper limit" class="legend-item above"/>
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>

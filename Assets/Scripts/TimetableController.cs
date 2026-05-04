@@ -33,7 +33,13 @@ public class TimetableController : MonoBehaviour
     
     void BuildGrid()
     {
+        
         var root = _doc.rootVisualElement;
+        root.style.position = Position.Absolute;
+        root.style.top = 0;
+        root.style.left = 0;
+        root.style.right = 0;
+        root.style.bottom = 0;
         _grid = root.Q<VisualElement>("grid-container");
         _grid.Clear();
 
@@ -193,11 +199,13 @@ public class TimetableController : MonoBehaviour
 
         // Update just this label — no need to rebuild the whole grid
         SetSessionLabel(label, next);
+        PlannerEvents.DataChanged();
+
     }
 
-    
+
     // HELPER — set label text and colour class
-    
+
     void SetSessionLabel(Label label, string sessionType)
     {
         // Remove all colour classes first
@@ -235,5 +243,10 @@ public class TimetableController : MonoBehaviour
             "Sun" => DayOfWeek.Sunday,
             _ => DayOfWeek.Monday
         };
+    }
+    void OnEnable()
+    {
+        if (DataManager.Instance != null)
+            BuildGrid();
     }
 }
