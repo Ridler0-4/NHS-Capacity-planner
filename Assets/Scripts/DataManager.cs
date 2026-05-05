@@ -1,11 +1,9 @@
-using CapacityPlanner;
-using System;
 using UnityEngine;
+using CapacityPlanner;
 
 public class DataManager : MonoBehaviour
 {
     public static DataManager Instance { get; private set; }
-
     public PlannerData Data { get; private set; }
 
     void Awake()
@@ -14,22 +12,27 @@ public class DataManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        Data = new PlannerData();
-        Data.LoadDefaults();
+        // Try to load saved data first
+        // Fall back to defaults if no save file exists
+        Data = PlannerSaveLoad.Load() ?? CreateDefaults();
 
-
-        var weekStart = new DateTime(2025, 1, 20);
-        var rows = CapacityEngine.BuildDashboard(weekStart, Data);
-
-        foreach (var row in rows)
+        // Auto-save whenever data changes
+        PlannerEvents.OnDataChanged += () => PlannerSaveLoad.Save(Data);
         {
-            Debug.Log($"{row.clinician} | " +
-                      $"Planned: {row.planned} | " +
-                      $"Adjusted: {row.adjusted} | " +
-                      $"Actual: {row.actual} | " +
-                      $"Cap: {row.capacityVariance:F1}% {row.capacityStatus} | " +
-                      $"Del: {row.deliveryVariance:F1}% {row.deliveryStatus}");
+            Debug.Log("Data changed — saving...");
+            PlannerSaveLoad.Save(Data);
         }
+        ;
     }
 
+    PlannerData CreateDefaults()
+    {
+        var data = new PlannerData();
+        data.LoadDefaults();
+        PlannerSaveLoad.Save(data); // save defaults immediately
+        return data;
+    }
+
+    // Call this from anywhere to manually save
+    public void Save() => PlannerSaveLoad.Save(Data);
 }

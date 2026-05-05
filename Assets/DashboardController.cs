@@ -28,6 +28,12 @@ public class DashboardController : MonoBehaviour
         // Always unsubscribe to avoid memory leaks
         PlannerEvents.OnDataChanged -= BuildDashboard;
     }
+    void OnExportClicked()
+    {
+        var rows = CapacityEngine.BuildDashboard(_weekStart, _data);
+        PlannerSaveLoad.ExportCSV(rows, _weekStart);
+        Debug.Log("Exported! Find your file at: " + PlannerSaveLoad.GetSaveFolder());
+    }
 
     void BuildDashboard()
     {
@@ -46,6 +52,13 @@ public class DashboardController : MonoBehaviour
 
         BuildMetricStrip(root, rows);
         BuildTable(root, rows);
+        // Wire up export button
+        var exportBtn = root.Q<Button>("export-btn");
+        if (exportBtn != null)
+        {
+            exportBtn.clicked -= OnExportClicked; // prevent duplicate listeners
+            exportBtn.clicked += OnExportClicked;
+        }
     }
 
     void BuildMetricStrip(VisualElement root, List<DashboardRow> rows)

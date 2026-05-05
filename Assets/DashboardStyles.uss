@@ -125,3 +125,16 @@
 .amber { color: rgb(133,79,11); }
 .red   { color: rgb(163,45,45); }
 .above { color: rgb(24,95,165); }
+
+.export-btn {
+    margin-top: 12px;
+    padding: 8px 20px;
+    background-color: rgb(24, 95, 165);
+    color: white;
+    border-radius: 6px;
+    border-width: 0;
+    font-size: 13px;
+    -unity-font-style: bold;
+    flex-shrink: 0;
+    align-self: flex-end;
+}

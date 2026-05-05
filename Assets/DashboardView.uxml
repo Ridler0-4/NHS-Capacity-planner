@@ -34,6 +34,7 @@
             <ui:Label text="Red: less than -10%" class="legend-item red"/>
             <ui:Label text="Above upper limit" class="legend-item above"/>
         </ui:VisualElement>
+        <ui:Button name="export-btn" text="Export to CSV" class="export-btn"/>
 
     </ui:VisualElement>
 </ui:UXML>

@@ -1,11 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/TimetableStyles.uss?fileID=7433441132597879392&amp;guid=1a7360bdf89c2f949841259e5826526f&amp;type=3#TimetableStyles"/>
-    <ui:VisualElement name="root" class="root" style="width: 721px;">
+    <ui:VisualElement name="root" class="root" style="width: 969px;">
         <ui:VisualElement class="header">
             <ui:Label text="Weekly Capacity Planner" class="title"/>
             <ui:Label name="week-label" text="Week of 20 Jan 2025" class="subtitle"/>
         </ui:VisualElement>
-        <ui:ScrollView name="grid-scroll" class="grid-scroll" style="width: 550px;">
+        <ui:ScrollView name="grid-scroll" class="grid-scroll" style="width: 711px;">
             <ui:VisualElement name="grid-container" class="grid-container"/>
         </ui:ScrollView>
         <ui:VisualElement class="legend">
