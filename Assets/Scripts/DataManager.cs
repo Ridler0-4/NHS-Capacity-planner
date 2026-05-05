@@ -12,11 +12,9 @@ public class DataManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // Try to load saved data first
-        // Fall back to defaults if no save file exists
         Data = PlannerSaveLoad.Load() ?? CreateDefaults();
 
-        // Auto-save whenever data changes
+
         PlannerEvents.OnDataChanged += () => PlannerSaveLoad.Save(Data);
         {
             Debug.Log("Data changed — saving...");

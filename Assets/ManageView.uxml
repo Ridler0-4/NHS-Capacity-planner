@@ -1,0 +1,89 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="project://database/Assets/ManageStyles.uss"/>
+    <ui:VisualElement name="root" class="root">
+
+        <ui:VisualElement class="topbar">
+            <ui:Label text="Manage" class="title"/>
+        </ui:VisualElement>
+
+        <ui:ScrollView class="scroll">
+
+            <!-- ADD CLINICIAN -->
+            <ui:VisualElement class="card">
+                <ui:Label text="Add clinician" class="card-title"/>
+                <ui:VisualElement class="form-row">
+                    <ui:TextField name="new-clinician-name" 
+                                  label="Name" 
+                                  class="input"/>
+                    <ui:Button name="add-clinician-btn" 
+                               text="Add" 
+                               class="btn btn-primary"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- REMOVE CLINICIAN -->
+            <ui:VisualElement class="card">
+                <ui:Label text="Remove clinician" class="card-title"/>
+                <ui:VisualElement class="form-row">
+                    <ui:DropdownField name="remove-clinician-dropdown" 
+                                      label="Clinician" 
+                                      class="input"/>
+                    <ui:Button name="remove-clinician-btn" 
+                               text="Remove" 
+                               class="btn btn-danger"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- ADD UNAVAILABILITY -->
+            <ui:VisualElement class="card">
+                <ui:Label text="Add leave / sick day / on call" class="card-title"/>
+                <ui:VisualElement class="form-row">
+                    <ui:DropdownField name="unavail-clinician" 
+                                      label="Clinician" 
+                                      class="input"/>
+                    <ui:DropdownField name="unavail-reason" 
+                                      label="Reason" 
+                                      class="input"/>
+                </ui:VisualElement>
+                <ui:VisualElement class="form-row">
+                    <ui:TextField name="unavail-start" 
+                                  label="Start date (YYYY-MM-DD)" 
+                                  class="input"/>
+                    <ui:TextField name="unavail-end" 
+                                  label="End date (YYYY-MM-DD)" 
+                                  class="input"/>
+                </ui:VisualElement>
+                <ui:Button name="unavail-btn" 
+                           text="Add unavailability" 
+                           class="btn btn-primary"/>
+            </ui:VisualElement>
+
+            <!-- ENTER ACTUALS -->
+            <ui:VisualElement class="card">
+                <ui:Label text="Enter actual delivery" class="card-title"/>
+                <ui:VisualElement class="form-row">
+                    <ui:DropdownField name="actual-clinician" 
+                                      label="Clinician" 
+                                      class="input"/>
+                    <ui:TextField name="actual-week" 
+                                  label="Week start (YYYY-MM-DD)" 
+                                  class="input"/>
+                    <ui:TextField name="actual-patients" 
+                                  label="Patients delivered" 
+                                  class="input"/>
+                </ui:VisualElement>
+                <ui:Button name="actual-btn" 
+                           text="Save actuals" 
+                           class="btn btn-primary"/>
+            </ui:VisualElement>
+
+            <!-- CURRENT UNAVAILABILITY LIST -->
+            <ui:VisualElement class="card">
+                <ui:Label text="Current unavailability" class="card-title"/>
+                <ui:VisualElement name="unavail-list"/>
+            </ui:VisualElement>
+
+        </ui:ScrollView>
+
+    </ui:VisualElement>
+</ui:UXML>

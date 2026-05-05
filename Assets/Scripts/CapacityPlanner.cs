@@ -1,23 +1,15 @@
-// DataModels.cs
-// Place this file in Assets/Scripts/Models/
-// No MonoBehaviour needed — these are pure data containers.
-
 using System;
 using System.Collections.Generic;
 
 namespace CapacityPlanner
 {
-    // ─────────────────────────────────────────────
-    // 1. TIMETABLE ENTRY — baseline weekly plan
-    //    One row = one clinician session slot
-    // ─────────────────────────────────────────────
     [Serializable]
     public class TimetableEntry
     {
-        public string clinician;        // e.g. "Dr. Matthews"
-        public DayOfWeek day;           // Mon–Sun (uses built-in C# enum)
-        public SessionTime time;        // AM or PM
-        public string sessionType;      // e.g. "Clinic", "Theatre", "Admin"
+        public string clinician;        
+        public DayOfWeek day;           
+        public SessionTime time;        
+        public string sessionType;      
 
         public TimetableEntry() { }
 
@@ -30,15 +22,12 @@ namespace CapacityPlanner
         }
     }
 
-    // ─────────────────────────────────────────────
-    // 2. SESSION RULE — capacity value per session type
-    //    Drives all planned capacity calculations
-    // ─────────────────────────────────────────────
+
     [Serializable]
     public class SessionRule
     {
-        public string sessionType;          // Must match TimetableEntry.sessionType exactly
-        public int patientsPerSession;   // e.g. Clinic = 8, Theatre = 4, Admin = 0
+        public string sessionType;          
+        public int patientsPerSession;  
 
         public SessionRule() { }
 
@@ -49,19 +38,15 @@ namespace CapacityPlanner
         }
     }
 
-    // ─────────────────────────────────────────────
-    // 3. UNAVAILABILITY — date-ranged override
-    //    Zeros out any sessions falling in this range
-    // ─────────────────────────────────────────────
     [Serializable]
     public class Unavailability
     {
-        public string clinician;  // Must match TimetableEntry.clinician exactly
-        public string startDate;  // ISO 8601: "2025-01-20"
-        public string endDate;    // ISO 8601: "2025-01-24"
-        public UnavailabilityReason reason; // Leave | Sick | OnCall
+        public string clinician; 
+        public string startDate;  
+        public string endDate;   
+        public UnavailabilityReason reason; 
 
-        // Parsed helpers — not serialized, computed on demand
+
         public DateTime StartDateTime => DateTime.Parse(startDate);
         public DateTime EndDateTime => DateTime.Parse(endDate);
 
@@ -75,25 +60,20 @@ namespace CapacityPlanner
             this.reason = reason;
         }
 
-        /// <summary>Returns true if the given calendar date falls within this block.</summary>
+       
         public bool CoversDate(DateTime date)
         {
             return date >= StartDateTime && date <= EndDateTime;
         }
     }
 
-    // ─────────────────────────────────────────────
-    // 4. ACTUAL ACTIVITY — real outcome per week
-    //    Compared against adjusted capacity
-    // ─────────────────────────────────────────────
+
     [Serializable]
     public class ActualActivity
     {
-        public string clinician;          // Must match TimetableEntry.clinician exactly
-        public string weekStart;          // ISO 8601: "2025-01-20" (always a Monday)
-        public int patientsDelivered;  // Raw count entered by the user
-
-        // Parsed helper
+        public string clinician;          
+        public string weekStart;        
+        public int patientsDelivered;  
         public DateTime WeekStartDateTime => DateTime.Parse(weekStart);
 
         public ActualActivity() { }
@@ -108,10 +88,10 @@ namespace CapacityPlanner
     [Serializable]
     public class ControlLimit
     {
-        public string clinician;        // null = applies to everyone
-        public float upperLimitPct;    // e.g. +10f  = flag if 10% over plan
-        public float lowerAmberPct;    // e.g. -5f   = amber below this
-        public float lowerRedPct;      // e.g. -10f  = red below this
+        public string clinician;       
+        public float upperLimitPct;    
+        public float lowerAmberPct;   
+        public float lowerRedPct;     
 
         public ControlLimit() { }
 
@@ -124,19 +104,16 @@ namespace CapacityPlanner
         }
     }
 
-    // ─────────────────────────────────────────────
-    // 6. ADDITIONAL SESSION — extra sessions added
-    //    outside the normal timetable to cover gaps
-    // ─────────────────────────────────────────────
+
     [Serializable]
     public class AdditionalSession
     {
         public string clinician;
-        public string date;           // ISO 8601: "2025-01-22"
-        public SessionTime time;        // AM or PM
-        public string sessionType;    // "Clinic", "Theatre" etc
-        public string reason;         // e.g. "Covering Dr Daniels leave"
-        public bool isExtra = true; // always true — marks it as additional
+        public string date;          
+        public SessionTime time;       
+        public string sessionType;    
+        public string reason;        
+        public bool isExtra = true;
 
         public DateTime SessionDate => DateTime.Parse(date);
 
@@ -153,9 +130,6 @@ namespace CapacityPlanner
         }
     }
 
-    // ─────────────────────────────────────────────
-    // SUPPORTING ENUMS
-    // ─────────────────────────────────────────────
     public enum SessionTime
     {
         AM,
@@ -169,11 +143,6 @@ namespace CapacityPlanner
         OnCall
     }
 
-    // ─────────────────────────────────────────────
-    // DATA STORE — single source of truth
-    //    Attach to a persistent GameObject (e.g. "DataManager")
-    //    All other scripts read from this, never store their own copies.
-    // ─────────────────────────────────────────────
     [Serializable]
     public class PlannerData
     {
@@ -185,7 +154,6 @@ namespace CapacityPlanner
         public List<AdditionalSession> additionalSessions = new List<AdditionalSession>();
 
 
-        /// <summary>Seed with sample data so you have something to work with immediately.</summary>
         public void LoadDefaults()
         {
             controlLimits = new List<ControlLimit>
@@ -233,9 +201,9 @@ namespace CapacityPlanner
 
             actuals = new List<ActualActivity>
             {
-                new ActualActivity("Dr. Matthews",  "2025-01-20", 68),
-                new ActualActivity("Dr. Jameson", "2025-01-20", 52),
-                new ActualActivity("Dr. Daniels",   "2025-01-20", 10),
+                new ActualActivity("Dr. Matthews",  "2026-05-04", 68),
+                new ActualActivity("Dr. Jameson", "2026-05-04", 52),
+                new ActualActivity("Dr. Daniels",   "2026-05-04", 10),
             };
         }
     }

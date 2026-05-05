@@ -3,7 +3,7 @@
     <ui:VisualElement name="root" class="root" style="width: 969px;">
         <ui:VisualElement class="header">
             <ui:Label text="Weekly Capacity Planner" class="title"/>
-            <ui:Label name="week-label" text="Week of 20 Jan 2025" class="subtitle"/>
+            <ui:Label name="week-label" text="Week of 04 May 2026" class="subtitle"/>
         </ui:VisualElement>
         <ui:ScrollView name="grid-scroll" class="grid-scroll" style="width: 711px;">
             <ui:VisualElement name="grid-container" class="grid-container"/>

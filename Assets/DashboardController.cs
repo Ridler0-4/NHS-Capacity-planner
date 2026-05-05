@@ -6,7 +6,7 @@ using CapacityPlanner;
 
 public class DashboardController : MonoBehaviour
 {
-    private DateTime _weekStart = new DateTime(2025, 1, 20);
+    private DateTime _weekStart = new DateTime(2026, 5, 4);
 
     private UIDocument _doc;
     private PlannerData _data;
@@ -188,8 +188,12 @@ public class DashboardController : MonoBehaviour
     }
     void OnEnable()
     {
-        if (DataManager.Instance != null)
-            BuildDashboard();
+        // Guard — don't run if Start hasn't fired yet
+        if (_doc == null) _doc = GetComponent<UIDocument>();
+        if (DataManager.Instance == null) return;
+        if (_data == null) _data = DataManager.Instance.Data;
+
+        BuildDashboard();
     }
 
 }

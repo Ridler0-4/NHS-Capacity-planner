@@ -13,7 +13,7 @@ public class TimetableController : MonoBehaviour
         { "Clinic", "Theatre", "Admin", "On Call", "Research", "" };
 
     //change this later with a date picker
-    private DateTime _weekStart = new DateTime(2026, 4, 30);
+    private DateTime _weekStart = new DateTime(2026, 5, 4);
 
     private UIDocument _doc;
     private VisualElement _grid;

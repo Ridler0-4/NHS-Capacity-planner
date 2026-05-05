@@ -5,38 +5,43 @@ public class NavigationController : MonoBehaviour
 {
     [SerializeField] private UIDocument timetableDoc;
     [SerializeField] private UIDocument dashboardDoc;
+    [SerializeField] private UIDocument manageDoc;
 
     void Start()
     {
-        // Hide both first
         timetableDoc.gameObject.SetActive(false);
         dashboardDoc.gameObject.SetActive(false);
+        manageDoc.gameObject.SetActive(false);
 
-        // Then show timetable by default
         ShowTimetable();
     }
 
     public void ShowTimetable()
     {
         dashboardDoc.gameObject.SetActive(false);
+        manageDoc.gameObject.SetActive(false);
         timetableDoc.gameObject.SetActive(true);
-
-        // Add nav to timetable
-        AddNavBar(timetableDoc.rootVisualElement, true);
+        AddNavBar(timetableDoc.rootVisualElement, 0);
     }
 
     public void ShowDashboard()
     {
         timetableDoc.gameObject.SetActive(false);
+        manageDoc.gameObject.SetActive(false);
         dashboardDoc.gameObject.SetActive(true);
-
-        // Add nav to dashboard
-        AddNavBar(dashboardDoc.rootVisualElement, false);
+        AddNavBar(dashboardDoc.rootVisualElement, 1);
     }
 
-    void AddNavBar(VisualElement root, bool timetableActive)
+    public void ShowManage()
     {
-        // Remove old navbar if exists
+        timetableDoc.gameObject.SetActive(false);
+        dashboardDoc.gameObject.SetActive(false);
+        manageDoc.gameObject.SetActive(true);
+        AddNavBar(manageDoc.rootVisualElement, 2);
+    }
+
+    void AddNavBar(VisualElement root, int activeIndex)
+    {
         var existing = root.Q<VisualElement>("navbar");
         if (existing != null) root.Remove(existing);
 
@@ -54,12 +59,11 @@ public class NavigationController : MonoBehaviour
         navbar.style.right = 0;
         navbar.style.height = 40;
 
-        navbar.Add(MakeNavButton("Timetable", timetableActive, () => ShowTimetable()));
-        navbar.Add(MakeNavButton("Dashboard", !timetableActive, () => ShowDashboard()));
+        navbar.Add(MakeNavButton("Timetable", activeIndex == 0, () => ShowTimetable()));
+        navbar.Add(MakeNavButton("Dashboard", activeIndex == 1, () => ShowDashboard()));
+        navbar.Add(MakeNavButton("Manage", activeIndex == 2, () => ShowManage()));
 
         root.Add(navbar);
-
-        // Push content down so it clears the navbar
         root.style.paddingTop = 48;
     }
 
