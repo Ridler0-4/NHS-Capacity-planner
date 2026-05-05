@@ -6,6 +6,7 @@ public class NavigationController : MonoBehaviour
     [SerializeField] private UIDocument timetableDoc;
     [SerializeField] private UIDocument dashboardDoc;
     [SerializeField] private UIDocument manageDoc;
+    [SerializeField] private Sprite logo;
 
     void Start()
     {
@@ -48,7 +49,7 @@ public class NavigationController : MonoBehaviour
         var navbar = new VisualElement();
         navbar.name = "navbar";
         navbar.style.flexDirection = FlexDirection.Row;
-        navbar.style.backgroundColor = new StyleColor(new Color(0.12f, 0.47f, 0.71f));
+        navbar.style.backgroundColor = new StyleColor(new Color(0f, 0.369f, 0.722f));
         navbar.style.paddingLeft = 16;
         navbar.style.paddingRight = 16;
         navbar.style.paddingTop = 8;
@@ -65,6 +66,18 @@ public class NavigationController : MonoBehaviour
 
         root.Add(navbar);
         root.style.paddingTop = 48;
+        if (logo != null)
+        {
+            var logoImg = new Image();
+            logoImg.sprite = logo;
+            logoImg.style.width = 100;
+            logoImg.style.height = 35;
+            logoImg.style.marginLeft = StyleKeyword.Auto;
+            logoImg.style.marginLeft = StyleKeyword.Auto;
+            logoImg.style.marginTop = -4;
+            navbar.Add(logoImg);
+
+        }
     }
 
     VisualElement MakeNavButton(string text, bool active, System.Action onClick)
